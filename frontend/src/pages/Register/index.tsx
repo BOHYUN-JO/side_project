@@ -39,7 +39,7 @@ interface ICampaignInfo {
   location: string;
   name: string;
   noticeDateTime: string;
-  recruitNumber: string;
+  recruitNumber: string | number;
   regStartDateTime: string;
   regEndDateTime: string;
   searchTags: string[];
@@ -48,7 +48,7 @@ interface ICampaignInfo {
 
 const Register = () => {
   const RegisterMutation = useMutation(
-    (CampaignInfo: ICampaignInfo) => axios.post('118.67.133.214:8080/api/campaign', CampaignInfo),
+    (CampaignInfo: ICampaignInfo) => axios.post('http://118.67.133.214:8080/api/campaign', CampaignInfo),
     {
       onSuccess: (res) => {
         console.log(res);
@@ -95,25 +95,35 @@ const Register = () => {
   };
 
   const handleSummit = () => {
-    const imageUrls = [...mainImage, ...detailImage];
+    // const imageUrls = [...mainImage, ...detailImage];
+    const regStart = new Date(regStartDateTime).toISOString().split('.')[0];
+    const regEnd = new Date(regEndDateTime).toISOString().split('.')[0];
+    const expStart = new Date(expStartDateTime).toISOString().split('.')[0];
+    const expEnd = new Date(expEndDateTime).toISOString().split('.')[0];
+    const notice = new Date(noticeDateTime).toISOString().split('.')[0];
+    const regNum = +recruitNumber;
+
     const CampaignInfo = {
       campaignDescription,
       campaignType,
       category,
       channelType,
       content,
-      expEndDateTime,
-      expStartDateTime,
-      imageUrls,
+      expEndDateTime: expEnd,
+      expStartDateTime: expStart,
+      imageUrls: [
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdbd1Kv11NZNsL9m2gon-EHK31N8rUG10hLpAfH4rqTQ&s',
+      ],
       location,
       name,
-      noticeDateTime,
-      recruitNumber,
-      regStartDateTime,
-      regEndDateTime,
+      noticeDateTime: notice,
+      recruitNumber: regNum,
+      regStartDateTime: regStart,
+      regEndDateTime: regEnd,
       searchTags,
       siteUrl,
     };
+
     RegisterMutation.mutate(CampaignInfo);
   };
 

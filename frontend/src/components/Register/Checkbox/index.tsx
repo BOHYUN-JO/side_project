@@ -51,11 +51,11 @@ const Checkbox = ({ type, onChangeType, onChangeCategory }: CheckboxProps) => {
       {type === 'snsType' && (
         <CheckBoxWrapper>
           <CheckBoxLabel>
-            <CheckBoxItem type="checkbox" name="snsType" value="blog" onClick={handleSnsTypeCheckbox} />
+            <CheckBoxItem type="checkbox" name="snsType" value="BLOG" onClick={handleSnsTypeCheckbox} />
             블로그
           </CheckBoxLabel>
           <CheckBoxLabel>
-            <CheckBoxItem type="checkbox" name="snsType" value="insta" onClick={handleSnsTypeCheckbox} />
+            <CheckBoxItem type="checkbox" name="snsType" value="INSTAGRAM" onClick={handleSnsTypeCheckbox} />
             인스타그램
           </CheckBoxLabel>
         </CheckBoxWrapper>
@@ -63,14 +63,14 @@ const Checkbox = ({ type, onChangeType, onChangeCategory }: CheckboxProps) => {
       {type === 'campaignType' && (
         <CheckBoxWrapper>
           <CheckBoxLabel htmlFor="">
-            <CheckBoxItem type="checkbox" name="campaignType" value="region" onClick={handleCampaignTypeCheckbox} />
+            <CheckBoxItem type="checkbox" name="campaignType" value="VISIT" onClick={handleCampaignTypeCheckbox} />
             지역형
           </CheckBoxLabel>
           <CheckBoxLabel htmlFor="">
-            <CheckBoxItem type="checkbox" name="campaignType" value="delivery" onClick={handleCampaignTypeCheckbox} />
+            <CheckBoxItem type="checkbox" name="campaignType" value="DELIVERY" onClick={handleCampaignTypeCheckbox} />
             배송형
           </CheckBoxLabel>
-          {curCampaignType === 'region' && (
+          {curCampaignType === 'VISIT' && (
             <SelectTag onChange={handleCategory}>
               {regionCategory.map((name, i) => (
                 <option key={i} value={name}>
@@ -79,7 +79,7 @@ const Checkbox = ({ type, onChangeType, onChangeCategory }: CheckboxProps) => {
               ))}
             </SelectTag>
           )}
-          {curCampaignType === 'delivery' && (
+          {curCampaignType === 'DELIVERY' && (
             <SelectTag onChange={handleCategory}>
               {deliveryCategory.map((name, i) => (
                 <option key={i} value={name}>
